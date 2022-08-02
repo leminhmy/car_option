@@ -16,7 +16,7 @@ class SmallText extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Text(
       text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       style: TextStyle(
           fontSize: fontSize??size.height * 0.016,
           fontWeight: fontWeight,

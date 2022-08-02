@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts:
   curved_navigation_bar:
+  syncfusion_flutter_datepicker:
+  provider:
+  imageview360:
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/cars360/
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see

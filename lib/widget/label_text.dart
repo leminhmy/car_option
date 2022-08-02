@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LabelText extends StatelessWidget {
   const LabelText({
-    Key? key, required this.text, this.color = Colors.black, this.fontWeight = FontWeight.bold,  this.fontSize,
+    Key? key, required this.text, this.color = Colors.black, this.fontWeight = FontWeight.w100,  this.fontSize,
   }) : super(key: key);
 
   final String text;

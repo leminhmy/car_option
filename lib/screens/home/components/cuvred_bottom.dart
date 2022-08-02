@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/theme_provider.dart';
 import '../../../widget/small_text.dart';
 
 class CurvedBottom extends StatefulWidget {
@@ -71,12 +73,15 @@ class _CurvedBottomState extends State<CurvedBottom>
 
   @override
   Widget build(BuildContext context) {
+    ListColorThemeModel listColorTheme =
+        context.watch<ThemeProvider>().listColorThemeModel;
     return AnimatedBuilder(
         animation: _animationController,
         builder: (context, child) {
           if (_animationController.isCompleted) {
             selectedOutIndex = selectedIndex;
           }
+
           return SizedBox(
             height: widget.size.height * 0.135,
             width: widget.size.width,
@@ -109,12 +114,12 @@ class _CurvedBottomState extends State<CurvedBottom>
                         horizontal: widget.size.height * 0.025),
                     width: widget.size.width,
                     decoration: BoxDecoration(
-                      color: Colors.black12,
+                      color: listColorTheme.bottomNavi,
                     ),
                     child: Stack(
                       children: [
                         Align(
-                          alignment: Alignment(-0.9,-1),
+                          alignment: Alignment(-0.9, -1),
                           child: Container(
                             width: 1,
                             height: 1,
@@ -124,14 +129,12 @@ class _CurvedBottomState extends State<CurvedBottom>
                                   BoxShadow(
                                       color: Color(0xff4aa6f4),
                                       blurRadius: 70,
-                                      spreadRadius: 80
-                                  ),
-                                ]
-                            ),
+                                      spreadRadius: 80),
+                                ]),
                           ),
                         ),
                         Align(
-                          alignment: Alignment(0.8,1.25),
+                          alignment: Alignment(0.8, 1.25),
                           child: Container(
                             width: 1,
                             height: 1,
@@ -141,17 +144,19 @@ class _CurvedBottomState extends State<CurvedBottom>
                                   BoxShadow(
                                       color: Color(0xff4aa6f4),
                                       blurRadius: 60,
-                                      spreadRadius: 50
-                                  ),
-                                ]
-                            ),
+                                      spreadRadius: 50),
+                                ]),
                           ),
                         ),
                         Column(
                           children: [
-                            BackdropFilter(filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5,)
-                                ,child: Container(
-                                    color: Colors.white,
+                            BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 5,
+                                sigmaY: 5,
+                              ),
+                              child: Container(
+                                color: Colors.white,
                               ),
                             ),
                           ],
@@ -195,7 +200,9 @@ class _CurvedBottomState extends State<CurvedBottom>
                                     Align(
                                         alignment: selectedIndex == index
                                             ? Alignment(
-                                                0, -_animationController.value+0.1)
+                                                0,
+                                                -_animationController.value +
+                                                    0.1)
                                             : selectedOutIndex == index
                                                 ? Alignment(
                                                     0,
@@ -203,19 +210,26 @@ class _CurvedBottomState extends State<CurvedBottom>
                                                         _animationController
                                                             .value)
                                                 : Alignment.center,
-                                        child: ImageIcon(AssetImage(listNaigator[index].imageIcon),color: selectedIndex==index?Colors.white:Colors.black,size: selectedIndex == index
-                                            ? widget.size.height * 0.035 +
-                                            ((widget.size.height *
-                                                0.010) *
-                                                _animationController
-                                                    .value)
-                                            : selectedOutIndex == index
-                                            ? widget.size.height * 0.045 -
-                                            ((widget.size.height *
-                                                0.010) *
-                                                _animationController
-                                                    .value)
-                                            : widget.size.height * 0.030,)),
+                                        child: ImageIcon(
+                                          AssetImage(
+                                              listNaigator[index].imageIcon),
+                                          color: selectedIndex == index
+                                              ? Colors.white
+                                              : listColorTheme.colorIcon,
+                                          size: selectedIndex == index
+                                              ? widget.size.height * 0.035 +
+                                                  ((widget.size.height *
+                                                          0.010) *
+                                                      _animationController
+                                                          .value)
+                                              : selectedOutIndex == index
+                                                  ? widget.size.height * 0.045 -
+                                                      ((widget.size.height *
+                                                              0.010) *
+                                                          _animationController
+                                                              .value)
+                                                  : widget.size.height * 0.030,
+                                        )),
                                     /*Icon(
                                       Icons.person_rounded,
                                       color: Colors.white,
@@ -243,7 +257,7 @@ class _CurvedBottomState extends State<CurvedBottom>
                                         child: SmallText(
                                           text: listNaigator[index].name,
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.black,
+                                          color: listColorTheme.text,
                                         )),
                                   ],
                                 ),
